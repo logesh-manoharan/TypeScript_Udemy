@@ -1,0 +1,51 @@
+TypeScript = Typescript is super set of JavaScript.
+
+Takes JavaScript and add more advantages by creating several new features.
+
+Browser doesn't execute Typescript.
+
+Node JS is also didn't execute.
+
+Seperate Compiler which is very strong will convert the typescript into the JavaScript.
+
+TypeScript is converted into JavaScript and executed in all the environments.
+
+Command to install the TYPESCRIPT 
+
+    $ npm install -g typescript
+
+Main Advantage:
+
+    It allows the developers to write a very clear and error less code.
+
+    We can avoid many unwanted and unnecessary errors.
+
+    Non JavaScript features like Interfaces and Generics
+
+    Meta-Programming Features like Decorators
+
+    Rich Configuration options (We can make our own compiler)
+
+
+    Course Outline:
+
+        1. TypeScript Basics
+        2. Compiler & Configuration Deep Dive
+        3. Working  with Next Gen JS Code
+        4. Classes & Interfaces
+        5. dvanced Types & TypeScript Features
+        6. Generics
+        7. Decorators
+        8. Time to Practice - Full Project
+        9. Working with Namespaces & modules
+        10. Webpack & Typescript
+        11. Rwact + TypeScript & NodeJs + TypeScript
+
+
+
+
+
+
+
+
+
