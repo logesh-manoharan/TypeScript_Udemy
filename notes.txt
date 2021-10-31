@@ -55,6 +55,19 @@ Main Advantage:
 
 
 
+        Core Types (of TYPES):
+                                SPECIALITIES
+            number  -               ---
+            string  -               ---
+            boolean -               ---
+            object  -               ---
+            Array   - it contains 'any' type i.e. We can store data in array with different data types
+            tuples  - JS doesn't contains it. (Fixed length array)
+            enum    - JS doesn't contains it. (To define the GLOBAL CONSTANTS)
+
+
+
+
 
 
 
