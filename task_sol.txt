@@ -1,0 +1,5 @@
+1.  TASK: How to convert TS file to JS file
+
+    STEPS:
+        TypeScript compiler is used to do the above process
+        Command '$ tsc TS_FILE_NAME_WITH_EXTENSION'

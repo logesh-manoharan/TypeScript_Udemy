@@ -1,0 +1,4 @@
+1. ERROR: Duplicate function detected error in TS file
+
+   SOLUTION:
+    Don't open the TS file & its corresponding JS file at same time
