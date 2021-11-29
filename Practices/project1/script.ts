@@ -68,6 +68,19 @@ console.log(tuple[1]);
 
 // ENUM
 
+const MONDAY = "Monday";
+const TUESDAY = "Tuesday";
+var WEDNESDAY = "Wednesday";
+
+
+enum Days {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY
+}
+
+console.log(Days[Days.MONDAY] + " " + Days[Days.TUESDAY] + " " + Days[Days.WEDNESDAY]);
+
 
 
 

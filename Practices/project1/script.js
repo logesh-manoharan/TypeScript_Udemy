@@ -32,3 +32,14 @@ console.log(arr[1]);
 var tuple;
 tuple = [36, 'Kaala'];
 console.log(tuple[1]);
+// ENUM
+var MONDAY = "Monday";
+var TUESDAY = "Tuesday";
+var WEDNESDAY = "Wednesday";
+var Days;
+(function (Days) {
+    Days[Days["MONDAY"] = 0] = "MONDAY";
+    Days[Days["TUESDAY"] = 1] = "TUESDAY";
+    Days[Days["WEDNESDAY"] = 2] = "WEDNESDAY";
+})(Days || (Days = {}));
+console.log(Days[Days.MONDAY] + " " + Days[Days.TUESDAY] + " " + Days[Days.WEDNESDAY]);
