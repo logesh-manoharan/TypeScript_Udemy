@@ -66,6 +66,67 @@ Main Advantage:
             enum    - JS doesn't contains it. (To define the GLOBAL CONSTANTS)
 
 
+        
+
+TypeScript COMPILER: (TSC)     [SECTION 3]
+
+    $tsc
+
+    1. Watch on single file:   
+        $tsc <FILE NAME> -w / --watch
+
+    2. Watch on all the files in the current folder:
+        $tsc -w / --watch
+
+    To customise the 'TypeScript Compiler' more... we can use the 'tsconfig.json' file like package.json file to cinfigure the Node JS Project
+
+    How to create a 'tsconfig.json' File in TypeScript? Ans: Exactly same as NPM.
+
+    3. Creating the .json file for more Configuration:
+
+        $tsc --init
+
+        About tsconfig.json:
+            By default, most of the features are commented.
+            Apart from the features listed in the tsconfig.json file there are some features also there.
+
+
+        Few important features in 'tsconfig.json' file:
+
+            'include' -> TSC only converts the files included in this. It will not consider anything other than that.
+            'exclude' -> converse to 'include'
+                Example: 
+                    {
+                        "compilerOptions": {
+                            ............................
+                            ... < DISCUSSED BELOW > ....
+                            ............................
+                        },
+                        "include": ["script.ts", "app.ts", "*.dev.ts"],
+                        "exclude": ["node_modules"]
+                    }
+
+            Compiler Options: [Important Options]
+
+                target        ->    JS Version.
+                lib           ->    Libraries needed for the TypeScript to run.
+                sourceMap     ->    When we open the console in BROWSER during the execution of application
+                                    in the 'source' tab we can see the 'JS' files but not 'TS' files.
+
+                                    So, to see the TS files too in the browser's console TSC will create
+                                    '<FILE NAME>.js.map' file. That will shown in Browser's console.
+
+                outDir        ->    PATH in which JS Files should be generated.
+                rootDir       ->    PATH from which TS Files should be taken.
+
+
+                (This is not created by default. We have to create it if we need it. It will one of the useful options)
+                noEmitOnError ->    JS file will not create when TS file contains error. [DEFAULT 'false']
+
+    
+
+
+
 
 
 

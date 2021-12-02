@@ -168,7 +168,7 @@ console.log("Addition: " + addition(5, 4));
 
 // As name suggests 'CALLBACKS' => we call back in a function and execute as we required
 
-function addAndHandle (n1: number, n2: number, cb) {
+function addAndHandle (n1: number, n2: number, cb: {(res: any) : void}) {
     const result = n1 + n2;
     cb(result);
 }
