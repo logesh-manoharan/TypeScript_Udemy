@@ -177,3 +177,106 @@ addAndHandle(20, 25, (result) => {
     result = result * 2;
     console.log("Doubled value : " + result);
 });
+
+
+
+
+
+
+// SECTION - 4
+
+
+// VAR vs LET   [Function level & Global SCOPE are same to both.]
+
+// Only the difference is BLOCK LEVEL
+// LET - it is only accessible inside the block where it is defined
+// VAR - once variable is defined using the VAR we can access the value from outside the block.
+
+{
+    let strr = "Strr"
+    console.log(strr);
+}
+
+// the below code will produce error
+// console.log(strr);
+
+if (true) {
+    var str1 = "String 1";
+    let str2 = "String 2";
+    console.log(str2);
+}
+
+console.log(str1);
+
+
+
+// Spread Operators => We can use it in both LISTS and OBJECTS
+
+
+// LISTS
+
+const hobbies = ["Sports", "Cooking", "Watching movies"];
+var activeHobbies = ["Playing"];
+
+// to add the element
+activeHobbies.push("Swimming");
+
+// but if i want to insert all the 'hobbies' values into 'activeHobbies'
+// activeHobbies.push(hobbies[0], hobbies[1], hobbies[2]);
+
+// but above process is very worst way. if the list is too long then it is hard.
+// SPREAD operator make this handy
+activeHobbies.push(...hobbies);
+console.log("Spread operator (LIST) : " + activeHobbies);
+
+
+// OBJECTS
+
+const person1 = {
+    name: "Logesh",
+    age: 21
+}
+
+var moreDetail = {
+    ...person1,
+    city: "Virudhunagar"
+}
+
+console.log("Spread Operator (OBJECT) : " + JSON.stringify(moreDetail));
+
+
+// '...' it is used as REST Parameter in functions
+// to accept huge number of PARAMS in the function
+const additionFunc = (...parameters: number[]) => {
+    return parameters.reduce((currentSum, currentVal) => {
+        return currentSum + currentVal;
+    }, 0)
+}
+
+// prints SUM of all the parameters
+console.log(additionFunc(1, 2, 3, 4, 5, 6, 7, 8));
+
+
+
+// ARRAY, OBJECT Destructuring
+
+// here, we use SQUARE BARACKETS & CURLI BRACES in Left Side
+
+const animals = ["Dog", "Cat", "Cow", "Lion"];
+
+var [dog, cat, ...remainingAnimals] = animals;
+console.log("Destructuring [List] : " + dog + " " + cat + " " + remainingAnimals);
+
+
+// OBJECT Destructuring
+
+const employee1 = {
+    firstName: "Logesh",
+    lastName: "M",
+    age: 21,
+    city: "VNR"
+}
+
+var { firstName: fullName, age } = employee1;
+
+console.log("Destructuring [Object] : " + fullName + " " + age);
