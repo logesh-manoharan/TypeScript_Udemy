@@ -1,4 +1,8 @@
 1. ERROR: Duplicate function detected error in TS file
 
    SOLUTION:
-    Don't open the TS file & its corresponding JS file at same time
+      1 -> Don't open the TS file & its corresponding JS file at same time
+
+      2 -> TS files that are present in same folder should contains different VARIABLE names.
+      
+   
