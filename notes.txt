@@ -123,6 +123,18 @@ TypeScript COMPILER: (TSC)     [SECTION 3]
                 (This is not created by default. We have to create it if we need it. It will one of the useful options)
                 noEmitOnError ->    JS file will not create when TS file contains error. [DEFAULT 'false']
 
+
+
+Advanced Types: [SECTION - 6]
+    
+    1. Intersection Types
+    2. Type Guards
+    3. Discriminated Unions
+    4. Type Casting
+    5. Function Overloads
+
+
+
     
 
 
