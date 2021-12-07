@@ -10,7 +10,7 @@
 var _a;
 // Intersection Types: [Combining the TYPES]
 console.log("\n\nIntersection Types\n");
-var eleEmployee1 = {
+const eleEmployee1 = {
     name: "Logesh",
     priviledges: ["Edit", "Get", "Add", "Delete"],
     startDate: new Date()
@@ -31,27 +31,21 @@ function printEmployee(emp) {
     console.log(emp.priviledges);
 }
 // Type Guard in classes [using 'instanceOf']
-var Car = /** @class */ (function () {
-    function Car() {
-    }
-    Car.prototype.drive = function () {
+class Car {
+    drive() {
         console.log("Driving a Car...");
-    };
-    return Car;
-}());
-var Truck = /** @class */ (function () {
-    function Truck() {
     }
-    Truck.prototype.drive = function () {
+}
+class Truck {
+    drive() {
         console.log("Driving a Truck...");
-    };
-    Truck.prototype.driverCount = function (count) {
+    }
+    driverCount(count) {
         console.log("Number of drivers in the truck: " + count);
-    };
-    return Truck;
-}());
-var v1 = new Car();
-var v2 = new Truck();
+    }
+}
+const v1 = new Car();
+const v2 = new Truck();
 function driveVehicle(vehicle) {
     // Type Guard using 'instanceof'=> execute on 'RUNTIME'
     if (vehicle instanceof Truck) {
@@ -61,7 +55,7 @@ function driveVehicle(vehicle) {
 // Discriminated UNION
 console.log("\n\nDiscriminated Union\n");
 function setSpeed(horse) {
-    var speed;
+    let speed;
     if (horse.type === "animal") {
         speed = horse.runningSpeed;
     }
@@ -83,12 +77,9 @@ var emailId = document.getElementById("emailId");
 emailId.value = "logeshlogu189@gmail.com";
 // Index Properties
 console.log("\n\nIndex Properties\n");
-var ErrorContainer = /** @class */ (function () {
-    function ErrorContainer() {
-    }
-    return ErrorContainer;
-}());
-var errorObj = {
+class ErrorContainer {
+}
+const errorObj = {
     emailId: "Please, enter valid email id !!",
     username: "username should start with alphabets !!"
 };
@@ -105,7 +96,7 @@ console.log(additionFunct('logesh', 'mano'));
 console.log(additionFunct(7, ' - MSD'));
 // Optional Chaining => ?.
 console.log("\n\n Optional Chaining\n");
-var object = {
+const object = {
     name: "Logesh",
     age: 21,
     address: {
@@ -116,7 +107,7 @@ var object = {
 console.log((_a = object === null || object === void 0 ? void 0 : object.address) === null || _a === void 0 ? void 0 : _a.city);
 // Nullish Coalescing => '??'
 console.log("\n\nNullish Coalescing\n");
-var tmp = null;
+const tmp = null;
 // if 'tmp' is 'NULL/ UNDEFINED' original = 'DEFAULT'. Otherwise, original = tmp
-var original = tmp !== null && tmp !== void 0 ? tmp : 'DEFAULT';
+const original = tmp !== null && tmp !== void 0 ? tmp : 'DEFAULT';
 console.log("Original Value: " + original);
