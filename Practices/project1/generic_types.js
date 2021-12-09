@@ -80,3 +80,17 @@ const numberStorage = new DataStorage();
 numberStorage.addItem(10);
 numberStorage.addItem(20);
 numberStorage.printStorage();
+// Generic Utility Types
+console.log("\n\nGeneric Utility Types\n");
+// 1 - Partial
+console.log("Partial...\n");
+// 'Partial' will allow the developers with more flexibility. We don't need to fillout all the fields.
+function setPlayer(playerName, playerAge) {
+    return { playerName: playerName, playerAge: playerAge };
+}
+console.log(setPlayer("Messi", 36));
+// 2 - Readonly
+console.log("Readonly...\n");
+const listOfBirds = ["Peacock", "Parrot"];
+// listOfBirds[2] = "Hen";     // ERROR will create 
+console.log(listOfBirds);
