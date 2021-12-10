@@ -4,8 +4,11 @@
     What does 'Meta Programming?'
         It will not create direct impact on the END USERS. Instead, it will make the
         developers to work bit easy.
-*/
 
+    When the decorators will execute ?
+        It will execute BEHIND THE SCENES. i.e. It will contains some 'META_DATA' about the particular methods/ class etc.,.
+        ... OR something we want to execute concurrently/ previously.
+*/
 
 /*
     Note: Before start scripting. Set '"experimentalDecorators": true' in 'tsconfig.json' file
@@ -101,5 +104,153 @@ class Product {
         }
     }
 }
+
+
+
+/*
+    Different Types of DECORATORS:
+        Class Decorator (Above Class)
+        Property Decorator (Above Class's Property)
+        Method Decorator (Above the Method)
+        Accessors (Moreover similar to 'Method Decorators'. Only the difference is it will be called on SETTER & GETTERS)
+        Parameter Decorator (Left to the Parameter)
+*/
+
+
+// 'PropertyDescriptor' is a type provided by the TypeScript itself.
+function Log2 (target: any, property: string) {
+    console.log("Property Decorator Logger...\n");
+    console.log("Target : " + target);
+    console.log("Property : " + property);
+    // console.log("Property Descriptor : " + descriptor);
+}
+
+
+// Acts as a Accessor [See the valueOf('target') in console it will be bit different than 'Method Decorator']
+function Log3 (target: any, property: any) {
+    console.log("Accessor Logger...\n");
+    console.log("Target: " + target);
+    console.log("Property: " + property);
+}
+
+function Log4 (target: any, property: any) {
+    console.log("Method Decorator Logger...\n");
+    console.log("Target: " + target);
+    console.log("Property: " + property);
+}
+
+class TeamDetails {
+    @Log2
+    teamName: string;
+
+    constructor (teamname: string) {
+        this.teamName = teamname;
+    }
+
+
+    // Accessor - Because, it is called on SETTER
+    @Log3
+    set setTeamName (teamname: string) {
+        this.teamName = teamname;
+    }
+
+    @Log4
+    printTeamName () {
+        console.log("Team Name: " + this.teamName);
+    }
+}
+
+
+
+// We can REPLACE or APPEND the new functionality to the available functionalities of the 'Particular Class'
+
+function DecoratorOnStudent () {
+    return function<T extends {new(...args: any[]): {}}> (originalConstructor: T) {
+        return class extends originalConstructor {
+            // '_' indicated they may present or absent
+            constructor (..._: any[]) {
+                super();
+                console.log("After Executing the Super Class...");
+            }
+        }
+    }
+}
+
+
+@DecoratorOnStudent()
+class StudentDetails {
+    studentName: string;
+
+    constructor (studentName: string) {
+        console.log("Constructor inside the SUPER CLASS called...");
+        this.studentName = studentName;
+    }
+}
+
+const student1 = new StudentDetails("Kamalesh");
+
+
+
+// AutoBind
+
+// function DecoratorOnStaff () {
+//     return function<T extends {new(...args: any[]): {}}> (originalConstructor: T) {
+//         return class extends originalConstructor {
+//             // '_' indicated they may present or absent
+//             constructor (..._: any[]) {
+//                 super();
+//                 console.log("After Executing the Super Class...");
+//             }
+//         }
+//     }
+// }
+
+// Using Decorators we are going to enable the BIND option automatically
+
+function AutoBind (target: any, property: any, descriptor: PropertyDescriptor) {
+    const originalDescriptor = descriptor.value;
+    // we can configure the original descriptor in the following way
+    const configDescription: PropertyDescriptor  = {
+        configurable: true,
+        enumerable: false,
+        get () {
+            const boundFunction = originalDescriptor.bind(this);
+            return boundFunction;
+        }
+    }
+
+    return configDescription;
+}
+
+
+class StaffDetails {
+    staffName: string;
+
+    constructor (staffName: string) {
+        console.log("Constructor inside the SUPER CLASS called...");
+        this.staffName = staffName;
+    }
+
+    @AutoBind
+    getStaff () {
+        console.log("Staff Name: " + this.staffName);
+    }
+}
+
+const staff1 = new StaffDetails("Uma");
+
+const button = document.querySelector("button")!;
+
+// it will show 'Staff Name: undefined' when I click the 'Click Me' button
+// button.addEventListener("click", staff1.getStaff)
+
+// it will show 'Staff Name: Thangavel' when I click the 'Click Me' button
+
+// Usual Way of binding
+// button.addEventListener("click", staff1.getStaff.bind(this));
+
+
+// after using 'AutoBind' Decorator - We no need to bind locally all are handled in Decorator itself
+button.addEventListener("click", staff1.getStaff);
 
 
