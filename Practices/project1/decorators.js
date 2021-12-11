@@ -223,3 +223,64 @@ const button = document.querySelector("button");
 // button.addEventListener("click", staff1.getStaff.bind(this));
 // after using 'AutoBind' Decorator - We no need to bind locally all are handled in Decorator itself
 button.addEventListener("click", staff1.getStaff);
+const registeredValidators = {};
+function Required(target, property) {
+    registeredValidators[target.constructor.name] = {
+        [property]: ['required']
+    };
+}
+function Positive(target, property) {
+    registeredValidators[target.constructor.name] = {
+        [property]: ['positive']
+    };
+}
+function validate(obj) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name];
+    // check any validations needed for Particular Property. If not 'return true;'
+    if (!objValidatorConfig) {
+        return true;
+    }
+    // let isValid = true;
+    for (const prop in objValidatorConfig) {
+        for (const validator of objValidatorConfig[prop]) {
+            switch (validator) {
+                case 'required':
+                    if (obj[prop] !== null) {
+                        return true;
+                    }
+                    return false;
+                case 'positive':
+                    if (obj[prop] > 0) {
+                        return true;
+                    }
+                    return false;
+            }
+        }
+    }
+}
+class Course {
+    constructor(courseTitle, coursePrice) {
+        this.title = courseTitle;
+        this.price = coursePrice;
+    }
+}
+__decorate([
+    Required,
+    __metadata("design:type", String)
+], Course.prototype, "title", void 0);
+__decorate([
+    Positive,
+    __metadata("design:type", String)
+], Course.prototype, "price", void 0);
+const courseForm = document.querySelector("form");
+courseForm.addEventListener("click", event => {
+    event.preventDefault();
+    const courseTitle = document.querySelector("#title");
+    const coursePrice = document.querySelector("#price");
+    const course1 = new Course(courseTitle.value, coursePrice.value);
+    if (!validate(course1)) {
+        alert("Invalid!! data enetered...please try again.");
+        return;
+    }
+    console.log("COURSE DETAILS\n\nCourse Title: " + courseTitle.value + "\nCourse Price: " + coursePrice.value);
+});

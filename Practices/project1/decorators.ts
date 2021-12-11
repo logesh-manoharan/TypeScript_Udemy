@@ -254,3 +254,80 @@ const button = document.querySelector("button")!;
 button.addEventListener("click", staff1.getStaff);
 
 
+
+
+// Decorators for the VALIDATIONS
+
+interface ValidatorConfig {
+    [propName: string]: {
+        [validationProperty: string]: string[];   // ['required', 'positive']
+    }
+}
+
+const registeredValidators: ValidatorConfig = {};
+
+function Required (target: any, property: any) {
+    registeredValidators[target.constructor.name] = {
+        [property]: ['required']
+    }
+}
+
+function Positive (target: any, property: any) {
+    registeredValidators[target.constructor.name] = {
+        [property]: ['positive']
+    }
+}
+
+function validate (obj: any) {
+    const objValidatorConfig = registeredValidators[obj.constructor.name];
+    // check any validations needed for Particular Property. If not 'return true;'
+    if (!objValidatorConfig) {
+        return true;
+    }
+    // let isValid = true;
+    for (const prop in objValidatorConfig) {
+        for (const validator of objValidatorConfig[prop]) {
+            switch (validator) {
+                case 'required':
+                    if (obj[prop] !== null) {
+                        return true;
+                    }
+                    return false;
+                case 'positive':
+                    if (obj[prop] > 0) {
+                        return true;
+                    }
+                    return false;
+            }
+        }
+    }
+}
+
+class Course {
+    @Required
+    title: string;
+
+    @Positive
+    price: string;
+
+    constructor (courseTitle: string, coursePrice: string) {
+        this.title = courseTitle;
+        this.price = coursePrice;
+    }
+}
+
+const courseForm = document.querySelector("form")!;
+
+courseForm.addEventListener("click", event => {
+    event.preventDefault();
+    const courseTitle = document.querySelector("#title")! as HTMLInputElement;
+    const coursePrice = document.querySelector("#price")! as HTMLInputElement;
+
+    const course1 = new Course(courseTitle.value, coursePrice.value);
+    if (!validate(course1)) {
+        alert("Invalid!! data enetered...please try again.");
+        return;
+    }
+    console.log("COURSE DETAILS\n\nCourse Title: " + courseTitle.value + "\nCourse Price: " + coursePrice.value);
+})
+
