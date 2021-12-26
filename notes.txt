@@ -135,6 +135,23 @@ Advanced Types: [SECTION - 6]
 
 
 
+MODULES(ES6) & NAMESPACES:
+
+    To split the codes into different files.
+
+
+    Problem in Namespaces:
+        We include the files by using the below way:
+            ///<reference path="FILEPATH" />
+        Problem here is when we import more number of files. We have to search for which
+        particular code snippet we are importing this particular namespace. It is very difficult to
+        findout it manually.
+
+
+    Issue in Namespaces are solved in ES6 JS modules:
+        How ?
+            In ES6 JS modules we specify what we import from which file. So, based on which we can
+        easily locate the usage of that specify thing inside any files.
     
 
 
