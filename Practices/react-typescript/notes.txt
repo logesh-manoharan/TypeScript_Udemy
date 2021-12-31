@@ -1,0 +1,3 @@
+1. How to create the REACT APP(setup) with TYPESCRIPT template?
+
+    $create-react-app PROJECT-NAME --template typescript
