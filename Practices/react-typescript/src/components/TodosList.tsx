@@ -1,13 +1,27 @@
 import React from 'react';
-import Todo from './Todo';
 
-const todosList: React.FunctionComponent = () => {
-    const todoList = [{id: Math.random().toString(), description: "First ToDo"}];
+interface TodoDef {
+    items: {
+        id: string,
+        description: string
+    }[];
+    onDeleteTodo: (todoId: string) => void; 
+}
 
+const todosList: React.FunctionComponent<TodoDef> = (props) => {
+    const onDelete = (todoId: string) => {
+        console.log("ID to delete : " + todoId);
+        props.onDeleteTodo(todoId);
+    }
+    
     return (
         <ul>
-            <Todo />
-            {todoList.map(todo => <li key={todo.id}>{todo.description}</li>)}
+            {props.items.map(todo => 
+                <li key={todo.id}>
+                    <span>{todo.description}</span>
+                    <button type='button' className='button-success' onClick={onDelete.bind(null, todo.id)}>DELETE</button>
+                </li>
+            )}
         </ul>
     );
 }
