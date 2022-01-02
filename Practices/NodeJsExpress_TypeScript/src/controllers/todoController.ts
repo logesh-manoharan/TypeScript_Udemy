@@ -22,8 +22,9 @@ export const updateTodo: RequestHandler<{id: string}> = (req, res, next) => {
 
     const newTodoText = (req.body as Todo).text;
     const indexToUpdate = TODOS.findIndex(todo => todo.id === todoId);
-    TODOS.splice(indexToUpdate, 1);
-    TODOS.splice(indexToUpdate, 0, {id: todoId, text: newTodoText} as Todo);
+    TODOS[indexToUpdate].text = newTodoText;
+
+    console.log("After Update : " + JSON.stringify(TODOS));
 
     res.status(200).json({ message: "Updated Successfully !!", updatedTodos: TODOS });
 }
@@ -31,9 +32,10 @@ export const updateTodo: RequestHandler<{id: string}> = (req, res, next) => {
 export const deleteTodo: RequestHandler<{ id: string }> = (req, res, next) => {
     const todoId = req.params.id; 
 
-    TODOS.filter((todo) => {
-        return todo.id !== todoId;
-    });
+    const deleteIndex = TODOS.findIndex(todo => todo.id === todoId);
+
+    TODOS.splice(deleteIndex, 1);
+    console.log("TODOS LIST : " + JSON.stringify(TODOS));
 
     res.status(200).json({ message: "Deleted Succesfully", afterDelete: TODOS});
 }
